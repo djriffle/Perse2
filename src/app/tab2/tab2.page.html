@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Favorites
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor ="let favorite of favorites">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10" class="info-column">
+          <h4>{{favorite.title}}</h4>
+          <h4>{{favorite.desc}}</h4>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="load(favorite)" tab="tab1" color="tertiary">
+            <ion-icon name="search-sharp"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="button-column">
+          <ion-button (click)="removeFavorite(favorite)" color = "danger" id="favorite">
+            <ion-icon  name="trash-sharp"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+  <app-explore-container *ngIf="empty" name="You Don't Have Any Favorites"></app-explore-container>
+</ion-content>

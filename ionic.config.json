@@ -1,0 +1,7 @@
+{
+  "name": "Perse2",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
