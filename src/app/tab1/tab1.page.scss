@@ -8,6 +8,10 @@
     padding:0px;
     overflow:hidden;
   }
+
+ion-content {
+    --overflow: hidden;
+}
 #noI{
     position: absolute;
     top: 40%;

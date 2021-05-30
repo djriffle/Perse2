@@ -27,12 +27,23 @@ export class Tab2Page {
     {
       this.platform.ready().then(async () => {
         await this.admob.start();
-        const admobBanner = new this.admob.BannerAd({
-          adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-          position: 'top'
-        });
-        admobBanner.show();
-        this.admobBanner = admobBanner
+        if(this.platform.is("ios")){
+          //ios admob
+          console.log("Running ios")
+          this.admobBanner = new this.admob.BannerAd({
+            adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+            position: 'top'
+          });
+        }
+        else{
+          //andriod admob
+          console.log("Running andrioid")
+          this.admobBanner = new this.admob.BannerAd({
+            adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+            position: 'top'
+          });
+        }
+        this.admobBanner.show();
         this.admobSetup=true
         
         this.admob.on('admob.banner.load').subscribe(async () => {
