@@ -262,8 +262,7 @@ export class Tab1Page {
   async presentNoInternet () {
     const alert = await this.alertController.create({
       header: 'No Internet',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
+      message: 'Can not establish an internet connection.',
       buttons: ['OK']
     });
     await alert.present();
@@ -274,8 +273,7 @@ export class Tab1Page {
   async presentNoProtein () {
     const alert = await this.alertController.create({
       header: 'Protein Not Found',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
+      message: 'Your protein can no be found in the RCSB databse.',
       buttons: ['OK']
     });
     await alert.present();

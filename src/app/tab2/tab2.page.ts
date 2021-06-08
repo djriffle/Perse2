@@ -27,11 +27,12 @@ export class Tab2Page {
     {
       this.platform.ready().then(async () => {
         await this.admob.start();
+        this.admob.requestTrackingAuthorization()
         if(this.platform.is("ios")){
           //ios admob
           console.log("Running ios")
           this.admobBanner = new this.admob.BannerAd({
-            adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+            adUnitId: 'ca-app-pub-7436607995177518/9893580317',
             position: 'top'
           });
         }
@@ -39,7 +40,7 @@ export class Tab2Page {
           //andriod admob
           console.log("Running andrioid")
           this.admobBanner = new this.admob.BannerAd({
-            adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+            adUnitId: 'ca-app-pub-7436607995177518/3835470248',
             position: 'top'
           });
         }
@@ -51,6 +52,10 @@ export class Tab2Page {
         });
       });
     }
+
+  ngOnInit(){
+
+  }
 
   ionViewWillEnter(){
     if(this.admobSetup){
