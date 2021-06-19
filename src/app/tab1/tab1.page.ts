@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component,Input, ViewChild} from '@angular/core';
 import { Platform } from '@ionic/angular';
 import {PdbminerService} from '../services/pdbminer.service'
 import {Pdb} from '../data/pdb'
@@ -20,6 +20,7 @@ const pv= require('bio-pv/bio-pv.min')
 */
 export class Tab1Page {
 
+  @ViewChild('next') nextButton ;
   //attributes for this page
   windownWidth: number;
   windowHeight: number;
@@ -71,6 +72,7 @@ export class Tab1Page {
   }
 
   async search(event,first){
+    
     this.keyboard.hide()
     this.loading = true
       var results = await this.pdbminer.lookFor(this.searchQuery).then(response =>{
@@ -104,6 +106,7 @@ export class Tab1Page {
           this.presentNoInternet()
         }
       });
+      this.nextButton.setFocus();
     }
     
 
