@@ -55,7 +55,7 @@
   </ion-grid>
   <ion-grid>
     <ion-row>
-      <ion-searchbar placeholder="Protein Name or pdb ID" color = "tertiary" animated [(ngModel)]="searchQuery" 
+      <ion-searchbar *ngIf="popSearch" placeholder="Protein Name or pdb ID" color = "tertiary" animated [(ngModel)]="searchQuery" 
                       (search)="search($event,true)" id="searchText"></ion-searchbar>
       <ion-button *ngIf="!favorite" (click)="addFavorite()" color = "tertiary" id="favorite">
         <ion-icon  name="heart-outline"></ion-icon>

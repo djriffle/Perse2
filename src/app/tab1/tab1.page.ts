@@ -1,4 +1,4 @@
-import { Component,Input, ViewChild} from '@angular/core';
+import { Component,ElementRef, ViewChildren} from '@angular/core';
 import { Platform } from '@ionic/angular';
 import {PdbminerService} from '../services/pdbminer.service'
 import {Pdb} from '../data/pdb'
@@ -19,18 +19,15 @@ const pv= require('bio-pv/bio-pv.min')
 ----The viewer to display molecules----
 */
 export class Tab1Page {
-
-  @ViewChild('next') nextButton ;
+  @ViewChildren('searchText') searchText;
   //attributes for this page
   windownWidth: number;
   windowHeight: number;
-  
   //all our pdb information
   structure:any;
   structureId = '4ubb';
   structureTitle;
   structureDesc;
-
   //used by protein viewer
   viewer:any;
   //used for rcsb query
@@ -43,7 +40,8 @@ export class Tab1Page {
   favorite:boolean;
   //keeps track if currently in loading mode
   loading:boolean = false;
-  
+  //for a fix for search bar
+  popSearch:boolean = true;
   constructor(
     private favoriteService:FavoriteService, 
     private pdbminer:PdbminerService,
@@ -54,11 +52,15 @@ export class Tab1Page {
     ){}
   
   ngOnInit(){
+    let outlineBool = true
+    if(this.platform.is('ipad')){
+      outlineBool = false
+    }
     this.windowHeight = this.platform.height()
     this.windownWidth = this.platform.width()
     this.viewer = pv.Viewer(document.getElementById('viewer'), 
     { quality : 'high', width: this.windownWidth, height : this.windowHeight-this.windowHeight*0.07,
-      antialias : true, outline : true});
+      antialias : true, outline : outlineBool});
   }
 
   async ionViewWillEnter(){
@@ -72,10 +74,9 @@ export class Tab1Page {
   }
 
   async search(event,first){
-    
-    this.keyboard.hide()
     this.loading = true
-      var results = await this.pdbminer.lookFor(this.searchQuery).then(response =>{
+    this.keyboard.hide()
+    var results = await this.pdbminer.lookFor(this.searchQuery).then(response =>{
         console.log(response)
         if(response == null){
           if(first){
@@ -85,7 +86,6 @@ export class Tab1Page {
             this.loading = false
             this.presentNoProtein()
           }
-          return
         }
         this.results = response
         this.totalPdbs = this.results.result_set.length
@@ -97,7 +97,6 @@ export class Tab1Page {
         this.loading = false
       }
       ,err =>{
-        console.log("test")
         console.log(err)
         if(err.status == 400){
           this.presentNoProtein()
@@ -106,10 +105,16 @@ export class Tab1Page {
           this.presentNoInternet()
         }
       });
-      this.nextButton.setFocus();
+      this._popSearch()
     }
     
 
+  _popSearch(){
+    console.log("popping")
+    this.popSearch =false
+    setTimeout(() => {this.popSearch = true}, 500);
+  }
+  
   _checkIfCurrentIsFavorite(){
     console.log( )
     if(this.favoriteService.isFavorite({
