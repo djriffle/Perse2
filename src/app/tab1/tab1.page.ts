@@ -281,7 +281,7 @@ export class Tab1Page {
   async presentNoProtein () {
     const alert = await this.alertController.create({
       header: 'Protein Not Found',
-      message: 'Your protein can no be found in the RCSB databse.',
+      message: 'Your protein can no be found in the RCSB database.',
       buttons: ['OK']
     });
     await alert.present();
