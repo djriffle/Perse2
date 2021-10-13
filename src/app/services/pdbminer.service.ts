@@ -11,11 +11,12 @@ export class PdbminerService {
 
   async lookFor(text){
     try{
+      console.log("text = " + text)
       return await this.http.post('https://search.rcsb.org/rcsbsearch/v1/query', {
       "return_type": 'entry',
       "query": {
         "type": "terminal",
-        "service": "text",
+        "service": "full_text",
         "parameters": {
           "value": text
         }
