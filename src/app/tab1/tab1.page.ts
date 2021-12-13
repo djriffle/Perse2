@@ -89,6 +89,7 @@ export class Tab1Page {
         }
         this.results = response
         this.totalPdbs = this.results.result_set.length
+        this.currentPdb = 1
         this.structureId = this.results.result_set[0].identifier
         this._checkIfCurrentIsFavorite()
         this.pdbFocusService.setFocus(this.structureId)

@@ -98,10 +98,8 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "admob-plus-cordova": {
-        "APP_ID_ANDROID": "ca-app-pub-7436607995177518~8580498646",
-        "APP_ID_IOS": "ca-app-pub-7436607995177518~3716891062",
-        "USAGE": "This identifier will be used to deliver personalized ads to you.",
-        "DISABLESDKCRASHREPORTING": "false"
+        "APP_ID_ANDROID": "ca-app-pub-7436607995177518~6321832439",
+        "APP_ID_IOS": "ca-app-pub-7436607995177518~8265469498"
       }
     },
     "platforms": [
