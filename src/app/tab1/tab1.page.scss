@@ -59,7 +59,6 @@ ion-content {
   left: 1vw;
 }
 #options{
-  pointer-events: none;
   position: absolute;
   width:23vw;
   right:1vw;
@@ -74,7 +73,7 @@ ion-content {
   position: absolute;
   width:23vw;
   right:1vw;
-  bottom:1vh;
+  bottom:-2vh;
   align-content: left;
   align-items: left;
   justify-content: left;
